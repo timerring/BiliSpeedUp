@@ -265,6 +265,182 @@
         }
     }
 
+    /*
+     * 首次使用引导模块 (Tour Guide)
+     */
+    class TourGuide {
+        constructor() {
+            this.steps = [];
+            this.currentStep = 0;
+            this.overlay = null;
+            this.tooltip = null;
+            this.storageKey = 'bilibili_speed_tour_shown_v1'; 
+        }
+
+        start() {
+            if (localStorage.getItem(this.storageKey)) return;
+            
+            this.initStyles();
+            this.createOverlay();
+            this.createTooltip();
+            
+            this.steps = [
+                {
+                    element: '.bpx-player-ctrl-playbackrate',
+                    title: '倍速控制增强',
+                    content: '👋 欢迎使用倍速增强脚本！<br>这里是倍速控制入口，支持悬停查看菜单。',
+                    position: 'top'
+                },
+                {
+                    element: '#custom-speed-input',
+                    title: '自定义倍速',
+                    content: '🔢 在这里直接输入任意倍速 (0.07 - 10.0)。<br>支持 0.01 精度，输入后回车即可应用。',
+                    position: 'right',
+                    action: () => {
+                        // 强制显示菜单
+                        const menu = document.querySelector('.bpx-player-ctrl-playbackrate-menu');
+                        if (menu) {
+                            menu.style.display = 'block';
+                            menu.style.visibility = 'visible';
+                            menu.style.opacity = '1';
+                        }
+                        // 聚焦输入框
+                        const input = document.querySelector('#custom-speed-input');
+                        if (input) input.focus();
+                    }
+                },
+                {
+                    element: '.bpx-player-ctrl-playbackrate-menu',
+                    title: '滚轮与触控板调节',
+                    content: '🖱️ <b>鼠标滚轮：</b>在按钮或菜单上滚动，快速调节 (±0.1)。<br>👆 <b>触控板：</b>在按钮或菜单上上下滑动，细腻微调 (±0.02)。<br>上滑加速，下滑减速。<br><br>💾 <b>自动记忆：</b>您的倍速设置会自动保存，下次观看自动恢复。',
+                    position: 'left',
+                    action: () => {
+                        // 确保菜单显示
+                        const menu = document.querySelector('.bpx-player-ctrl-playbackrate-menu');
+                        if (menu) {
+                            menu.style.display = 'block';
+                            menu.style.visibility = 'visible';
+                            menu.style.opacity = '1';
+                        }
+                    },
+                    isLast: true
+                }
+            ];
+
+            setTimeout(() => this.showStep(0), 1000);
+        }
+
+        initStyles() {
+            const style = document.createElement('style');
+            style.textContent = `
+                .tour-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); z-index: 99999; pointer-events: auto; transition: opacity 0.3s; }
+                .tour-highlight { position: absolute; box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.6); z-index: 99998; border-radius: 4px; pointer-events: none; transition: all 0.3s ease; border: 2px solid #00aeec; }
+                .tour-tooltip { position: absolute; background: #212121; color: #fff; padding: 16px; border-radius: 8px; width: 280px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); z-index: 100000; font-size: 14px; line-height: 1.6; border: 1px solid #3a3a3a; transition: all 0.3s ease; }
+                .tour-tooltip h3 { margin: 0 0 8px 0; color: #00aeec; font-size: 16px; font-weight: bold; }
+                .tour-tooltip p { margin: 0 0 16px 0; color: #e0e0e0; }
+                .tour-footer { display: flex; justify-content: flex-end; gap: 10px; }
+                .tour-btn { padding: 6px 12px; border-radius: 4px; cursor: pointer; border: none; font-size: 12px; transition: background 0.2s; }
+                .tour-btn-skip { background: transparent; color: #999; }
+                .tour-btn-skip:hover { color: #ccc; }
+                .tour-btn-next { background: #00aeec; color: #fff; }
+                .tour-btn-next:hover { background: #008bbd; }
+            `;
+            document.head.appendChild(style);
+        }
+
+        createOverlay() {
+            this.highlight = document.createElement('div');
+            this.highlight.className = 'tour-highlight';
+            document.body.appendChild(this.highlight);
+        }
+
+        createTooltip() {
+            this.tooltip = document.createElement('div');
+            this.tooltip.className = 'tour-tooltip';
+            document.body.appendChild(this.tooltip);
+        }
+
+        showStep(index) {
+            if (index >= this.steps.length) {
+                this.end();
+                return;
+            }
+
+            this.currentStep = index;
+            const step = this.steps[index];
+            if (step.action) step.action();
+
+            let target = step.element;
+            if (typeof target === 'string') target = document.querySelector(target);
+
+            if (!target && !step.isLast) {
+                this.showStep(index + 1);
+                return;
+            }
+
+            if (step.position === 'center') {
+                this.highlight.style.display = 'none';
+                this.tooltip.style.top = '50%';
+                this.tooltip.style.left = '50%';
+                this.tooltip.style.transform = 'translate(-50%, -50%)';
+            } else {
+                const rect = target.getBoundingClientRect();
+                const scrollY = window.scrollY;
+                const scrollX = window.scrollX;
+
+                this.highlight.style.display = 'block';
+                this.highlight.style.width = `${rect.width}px`;
+                this.highlight.style.height = `${rect.height}px`;
+                this.highlight.style.top = `${rect.top + scrollY}px`;
+                this.highlight.style.left = `${rect.left + scrollX}px`;
+
+                if (step.position === 'top') {
+                    this.tooltip.style.top = `${rect.top + scrollY - 160}px`;
+                    this.tooltip.style.left = `${rect.left + scrollX - 100}px`;
+                    this.tooltip.style.transform = 'none';
+                } else if (step.position === 'right') {
+                    this.tooltip.style.top = `${rect.top + scrollY}px`;
+                    this.tooltip.style.left = `${rect.right + scrollX + 20}px`;
+                    this.tooltip.style.transform = 'none';
+                } else if (step.position === 'left') {
+                    this.tooltip.style.top = `${rect.top + scrollY}px`;
+                    this.tooltip.style.left = `${rect.left + scrollX - 300}px`; // 提示框宽度 280 + 间距 20
+                    this.tooltip.style.transform = 'none';
+                }
+            }
+
+            this.tooltip.innerHTML = `
+                <h3>${step.title}</h3>
+                <p>${step.content}</p>
+                <div class="tour-footer">
+                    <button class="tour-btn tour-btn-skip" id="tour-skip">跳过</button>
+                    <button class="tour-btn tour-btn-next" id="tour-next">
+                        ${step.isLast ? '完成' : '下一步'}
+                    </button>
+                </div>
+            `;
+
+            document.getElementById('tour-next').onclick = () => this.showStep(this.currentStep + 1);
+            document.getElementById('tour-skip').onclick = () => this.end();
+        }
+
+        end() {
+            if (this.highlight) this.highlight.remove();
+            if (this.tooltip) this.tooltip.remove();
+            localStorage.setItem(this.storageKey, 'true');
+            
+            // 确保菜单关闭
+            const btn = document.querySelector('.bpx-player-ctrl-playbackrate');
+            if (btn) btn.dispatchEvent(new MouseEvent('mouseout'));
+            const menu = document.querySelector('.bpx-player-ctrl-playbackrate-menu');
+            if (menu) {
+                menu.style.display = '';
+                menu.style.visibility = '';
+                menu.style.opacity = '';
+            }
+        }
+    }
+
     // 初始化
     function init() {
         let retries = 0;
@@ -276,6 +452,8 @@
             if (enhanceSpeedMenu()) {
                 // 应用保存的倍速
                 setTimeout(applySavedSpeed, 500);
+                // 启动引导（如果是首次）
+                setTimeout(() => new TourGuide().start(), 1500);
                 clearInterval(checkAndInit);
                 
                 // 监听视频元素变化，以处理切换视频的情况
