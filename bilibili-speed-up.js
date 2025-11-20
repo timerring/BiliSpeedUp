@@ -407,7 +407,7 @@
                     this.tooltip.style.transform = 'none';
                 } else if (step.position === 'left') {
                     this.tooltip.style.top = `${rect.top + scrollY}px`;
-                    this.tooltip.style.left = `${rect.left + scrollX - 300}px`; // 提示框宽度 280 + 间距 20
+                    this.tooltip.style.left = `${rect.left + scrollX - 320}px`; // 增加间距，避免遮挡菜单
                     this.tooltip.style.transform = 'none';
                 }
             }
