@@ -315,7 +315,22 @@
                 {
                     element: '.bpx-player-ctrl-playbackrate-menu',
                     title: '滚轮与触控板调节',
-                    content: '🖱️ <b>鼠标滚轮：</b>在按钮或菜单上滚动，快速调节 (±0.1)。<br>👆 <b>触控板：</b>在按钮或菜单上上下滑动，细腻微调 (±0.02)。<br>上滑加速，下滑减速。<br><br>💾 <b>自动记忆：</b>您的倍速设置会自动保存，下次观看自动恢复。',
+                    content: `
+                        <div class="anim-container">
+                            <div class="anim-box">
+                                <div class="anim-mouse"><div class="anim-scroll"></div></div>
+                                <span class="anim-label">鼠标滚轮</span>
+                            </div>
+                            <div class="anim-box">
+                                <div class="anim-touchpad"><div class="anim-finger"></div></div>
+                                <span class="anim-label">触控板滑动</span>
+                            </div>
+                        </div>
+                        上滑/滚动增加倍速，下滑/滚动减少倍速。<br><br>
+                        🖱️ <b>鼠标滚轮：</b>在按钮或菜单上滚动，快速调节 (±0.1)。<br>
+                        👆 <b>触控板：</b>在按钮或菜单上上下滑动，细腻微调 (±0.02)。<br>
+                        💾 <b>自动记忆：</b>您的倍速设置会自动保存，下次观看自动恢复。
+                    `,
                     position: 'left',
                     action: () => {
                         // 确保菜单显示
@@ -336,17 +351,68 @@
         initStyles() {
             const style = document.createElement('style');
             style.textContent = `
-                .tour-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); z-index: 99999; pointer-events: auto; transition: opacity 0.3s; }
+                .tour-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); z-index: 99999; pointer-events: none; transition: opacity 0.3s; }
                 .tour-highlight { position: absolute; box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.6); z-index: 99998; border-radius: 4px; pointer-events: none; transition: all 0.3s ease; border: 2px solid #00aeec; }
-                .tour-tooltip { position: absolute; background: #212121; color: #fff; padding: 16px; border-radius: 8px; width: 280px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); z-index: 100000; font-size: 14px; line-height: 1.6; border: 1px solid #3a3a3a; transition: all 0.3s ease; }
+                .tour-tooltip { position: absolute; background: #212121; color: #fff; padding: 16px; border-radius: 8px; width: 280px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); z-index: 100000; font-size: 14px; line-height: 1.6; border: 1px solid #3a3a3a; transition: all 0.3s ease; pointer-events: none; }
                 .tour-tooltip h3 { margin: 0 0 8px 0; color: #00aeec; font-size: 16px; font-weight: bold; }
                 .tour-tooltip p { margin: 0 0 16px 0; color: #e0e0e0; }
-                .tour-footer { display: flex; justify-content: flex-end; gap: 10px; }
-                .tour-btn { padding: 6px 12px; border-radius: 4px; cursor: pointer; border: none; font-size: 12px; transition: background 0.2s; }
+                .tour-footer { display: flex; justify-content: flex-end; gap: 10px; pointer-events: auto; }
+                .tour-btn { padding: 6px 12px; border-radius: 4px; cursor: pointer; border: none; font-size: 12px; transition: background 0.2s; pointer-events: auto; }
                 .tour-btn-skip { background: transparent; color: #999; }
                 .tour-btn-skip:hover { color: #ccc; }
                 .tour-btn-next { background: #00aeec; color: #fff; }
                 .tour-btn-next:hover { background: #008bbd; }
+
+                /* 动画样式 */
+                .anim-container { display: flex; gap: 20px; margin-bottom: 15px; justify-content: center; }
+                .anim-box { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+                .anim-label { font-size: 12px; color: #999; }
+                
+                /* 鼠标图标 */
+                .anim-mouse {
+                    width: 24px; height: 38px;
+                    border: 2px solid #fff; border-radius: 12px;
+                    position: relative;
+                }
+                .anim-scroll {
+                    width: 4px; height: 6px; background: #00aeec;
+                    border-radius: 2px; position: absolute;
+                    left: 50%; transform: translateX(-50%);
+                    top: 6px;
+                    animation: scroll-wheel 1.5s infinite;
+                }
+                @keyframes scroll-wheel {
+                    0% { top: 6px; opacity: 1; }
+                    100% { top: 20px; opacity: 0; }
+                }
+
+                /* 触控板图标 */
+                .anim-touchpad {
+                    width: 38px; height: 38px;
+                    border: 2px solid #fff; border-radius: 4px;
+                    position: relative; overflow: hidden;
+                }
+                .anim-finger {
+                    width: 8px; height: 8px; background: #00aeec;
+                    border-radius: 50%; position: absolute;
+                    left: 50%; top: 60%;
+                    transform: translate(-50%, -50%);
+                    animation: scroll-touch 1.5s infinite;
+                    box-shadow: 0 0 0 4px rgba(0, 174, 236, 0.3);
+                }
+                @keyframes scroll-touch {
+                    0% { top: 70%; opacity: 0; }
+                    20% { top: 70%; opacity: 1; }
+                    80% { top: 30%; opacity: 1; }
+                    100% { top: 30%; opacity: 0; }
+                }
+
+                /* 强制显示菜单样式 */
+                .tour-force-show {
+                    display: block !important;
+                    visibility: visible !important;
+                    opacity: 1 !important;
+                }
             `;
             document.head.appendChild(style);
         }
@@ -379,6 +445,18 @@
             if (!target && !step.isLast) {
                 this.showStep(index + 1);
                 return;
+            }
+
+            // 强制保持菜单显示
+            if (step.element === '.bpx-player-ctrl-playbackrate-menu' || step.element === '#custom-speed-input') {
+                const menu = document.querySelector('.bpx-player-ctrl-playbackrate-menu');
+                if (menu) {
+                    menu.style.display = 'block !important';
+                    menu.style.visibility = 'visible !important';
+                    menu.style.opacity = '1 !important';
+                    // 添加强制显示的类，覆盖可能的 hover 样式
+                    menu.classList.add('tour-force-show');
+                }
             }
 
             if (step.position === 'center') {
@@ -432,15 +510,18 @@
             if (this.tooltip) this.tooltip.remove();
             localStorage.setItem(this.storageKey, 'true');
             
-            // 确保菜单关闭
-            const btn = document.querySelector('.bpx-player-ctrl-playbackrate');
-            if (btn) btn.dispatchEvent(new MouseEvent('mouseout'));
+            // 清理强制显示的样式和类名
             const menu = document.querySelector('.bpx-player-ctrl-playbackrate-menu');
             if (menu) {
+                menu.classList.remove('tour-force-show');
                 menu.style.display = '';
                 menu.style.visibility = '';
                 menu.style.opacity = '';
             }
+            
+            // 确保菜单关闭
+            const btn = document.querySelector('.bpx-player-ctrl-playbackrate');
+            if (btn) btn.dispatchEvent(new MouseEvent('mouseout'));
         }
     }
 
