@@ -1,0 +1,28 @@
+{
+  "name": "BiliSpeedUp",
+  "version": "1.0.0",
+  "description": "B站倍速播放增强脚本 - 支持自定义倍速、鼠标滚轮调节、触控板调节、记忆倍速",
+  "type": "module",
+  "main": "dist/BiliSpeedUp.js",
+  "scripts": {
+    "build": "rollup -c",
+    "build:watch": "rollup -c -w",
+    "dev": "rollup -c -w",
+    "build:extension": "npm run build && cp dist/BiliSpeedUp.js chrome-extension/",
+    "copy:extension": "cp dist/BiliSpeedUp.js chrome-extension/"
+  },
+  "keywords": [
+    "bilibili",
+    "video",
+    "speed",
+    "playback",
+    "userscript"
+  ],
+  "author": "timerring",
+  "license": "MIT",
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "rollup": "^4.9.0"
+  }
+}
