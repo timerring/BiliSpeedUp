@@ -12,7 +12,9 @@
         MAX_SPEED: 10.0,
         SPEED_STEP: 0.01,
         CHECK_INTERVAL: 1000,
-        MAX_RETRIES: 30
+        MAX_RETRIES: 30,
+        // 引导功能版本控制，修改版本号重新显示引导
+        TOUR_VERSION: '1.0.0'
     };
 
     // 获取保存的倍速
@@ -274,7 +276,8 @@
             this.currentStep = 0;
             this.overlay = null;
             this.tooltip = null;
-            this.storageKey = 'bilibili_speed_tour_shown_v1'; 
+            // 使用版本号控制引导显示
+            this.storageKey = `bilibili_speed_tour_shown_v${CONFIG.TOUR_VERSION}`;
         }
 
         start() {
