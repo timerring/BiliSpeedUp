@@ -1,10 +1,15 @@
 import resolve from '@rollup/plugin-node-resolve';
 import terser from '@rollup/plugin-terser';
+import fs from 'fs';
+
+// 从 package.json 读取版本号
+const packageJson = JSON.parse(fs.readFileSync('./package.json', 'utf-8'));
+const version = packageJson.version;
 
 const banner = `// ==UserScript==
 // @name         BiliSpeedUp
 // @namespace    https://github.com/timerring/BiliSpeedUp
-// @version      1.0.0
+// @version      ${version}
 // @description  提供B站多倍速播放功能，支持自定义记忆播放速度、鼠标滚轮调节、触控板调节
 // @author       timerring
 // @match        https://www.bilibili.com/video/*
