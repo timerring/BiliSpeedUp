@@ -11,8 +11,8 @@
 // @license      MIT
 // @homepage     https://github.com/timerring/BiliSpeedUp
 // @supportURL   https://github.com/timerring/BiliSpeedUp/issues
-// @updateURL    https://github.com/timerring/BiliSpeedUp/raw/main/BiliSpeedUp.user.js
-// @downloadURL  https://github.com/timerring/BiliSpeedUp/raw/main/BiliSpeedUp.user.js
+// @updateURL    https://github.com/timerring/BiliSpeedUp/raw/main/dist/BiliSpeedUp.user.js
+// @downloadURL  https://github.com/timerring/BiliSpeedUp/raw/main/dist/BiliSpeedUp.user.js
 // ==/UserScript==
 
 (function() {
