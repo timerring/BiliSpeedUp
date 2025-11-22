@@ -9,8 +9,8 @@
     "build:watch": "rollup -c -w",
     "dev": "rollup -c -w",
     "build:userscript": "npm run build && node scripts/build-userscript.js",
-    "build:extension": "npm run build && cp dist/BiliSpeedUp.js chrome-extension/",
-    "copy:extension": "cp dist/BiliSpeedUp.js chrome-extension/"
+    "build:extension": "npm run build && node scripts/build-extension.js",
+    "build:all": "npm run build && node scripts/build-userscript.js && node scripts/build-extension.js"
   },
   "keywords": [
     "bilibili",
