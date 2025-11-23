@@ -1,11 +1,15 @@
-# BiliSpeedUp
+<div align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/headerDark.svg" />
+    <img src="assets/headerLight.svg" alt="BiliSpeedUp" />
+  </picture>
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Install](https://img.shields.io/badge/Install-UserScript-green.svg)](https://github.com/timerring/BiliSpeedUp/raw/main/dist/BiliSpeedUp.user.js)
 
 B站视频倍速播放增强脚本，支持自定义倍速、智能记忆、多种调节方式。
 
-Bilibili video playback speed enhancement script with custom speed control, intelligent memory, and multiple adjustment methods.
+</div>
 
 ![](https://cdn.jsdelivr.net/gh/timerring/scratchpad2023/2026/combined_steps.jpg)
 

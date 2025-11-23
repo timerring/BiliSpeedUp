@@ -1,10 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "BiliSpeedUp",
-  "name_zh_CN": "B站视频倍速工具",
+  "name": "BiliSpeedUp - B站倍速工具",
   "version": "1.0.0",
   "description": "B站视频倍速播放增强工具，支持自定义倍速、智能记忆、多种调节方式",
-  "description_zh_CN": "B站视频倍速播放增强工具，支持自定义倍速、智能记忆、多种调节方式",
   "author": "timerring",
   "homepage_url": "https://github.com/timerring/BiliSpeedUp",
   "icons": {
