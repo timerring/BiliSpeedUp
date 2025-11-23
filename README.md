@@ -7,6 +7,8 @@ B站视频倍速播放增强脚本，支持自定义倍速、智能记忆、多�
 
 Bilibili video playback speed enhancement script with custom speed control, intelligent memory, and multiple adjustment methods.
 
+![](https://cdn.jsdelivr.net/gh/timerring/scratchpad2023/2026/combined_steps.jpg)
+
 ## 快速安装
 
 ### 方式一：Tampermonkey 一键安装
