@@ -5,6 +5,7 @@
   </picture>
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Chrome Web Store](https://img.shields.io/badge/Install-Chrome%20Web%20Store-blue.svg)](https://chromewebstore.google.com/detail/heldpochgjiepmgkcaieifgmdfhoblbk)
 [![Install](https://img.shields.io/badge/Install-UserScript-green.svg)](https://github.com/timerring/BiliSpeedUp/raw/main/dist/BiliSpeedUp.user.js)
 
 B站视频倍速播放增强脚本，支持自定义倍速、智能记忆、多种调节方式。
@@ -15,21 +16,15 @@ B站视频倍速播放增强脚本，支持自定义倍速、智能记忆、多�
 
 ## 快速安装
 
-### 方式一：Tampermonkey 一键安装
+### 方式一：Chrome 应用商店（推荐）
+
+直接从 Chrome 应用商店安装：[![Chrome Web Store](https://img.shields.io/badge/Install-Chrome%20Web%20Store-blue.svg)](https://chromewebstore.google.com/detail/heldpochgjiepmgkcaieifgmdfhoblbk)
+
+### 方式二：Tampermonkey 脚本安装
 
 1. 安装 [Tampermonkey](https://www.tampermonkey.net/) 浏览器扩展
-2. 点击安装脚本：[安装 BiliSpeedUp](https://github.com/timerring/BiliSpeedUp/raw/main/dist/BiliSpeedUp.user.js)
+2. 点击安装脚本：[![Install](https://img.shields.io/badge/Install-UserScript-green.svg)](https://github.com/timerring/BiliSpeedUp/raw/main/dist/BiliSpeedUp.user.js)
 3. 打开 B站视频页面即可使用
-
-### 方式二：Chrome 扩展安装
-
-1. 下载 Chrome 扩展文件：[BiliSpeedUp-v1.0.0.zip](https://github.com/timerring/BiliSpeedUp/releases/latest)
-2. 解压 ZIP 文件到本地目录
-3. 打开 Chrome 浏览器，访问 `chrome://extensions/`
-4. 开启右上角的「开发者模式」
-5. 点击「加载已解压的扩展程序」
-6. 选择解压后的扩展目录
-7. 扩展安装完成，打开 B站视频页面即可使用
 
 ### 方式三：从源码构建
 
