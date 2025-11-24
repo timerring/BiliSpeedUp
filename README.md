@@ -5,8 +5,10 @@
   </picture>
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Chrome Web Store](https://img.shields.io/badge/Install-Chrome%20Web%20Store-blue.svg)](https://chromewebstore.google.com/detail/heldpochgjiepmgkcaieifgmdfhoblbk)
-[![Install](https://img.shields.io/badge/Install-UserScript-green.svg)](https://github.com/timerring/BiliSpeedUp/raw/main/dist/BiliSpeedUp.user.js)
+[![Chrome Web Store](https://img.shields.io/badge/Install-Chrome%20Web%20Store-4285F4?logo=googlechrome&logoColor=white)](https://chromewebstore.google.com/detail/heldpochgjiepmgkcaieifgmdfhoblbk)
+[![UserScript](https://img.shields.io/badge/Install-UserScript-green?logo=tampermonkey&logoColor=white)](https://github.com/timerring/BiliSpeedUp/raw/main/dist/BiliSpeedUp.user.js)
+[![Bilibili](https://img.shields.io/badge/Video-Bilibili-00A1D6?logo=bilibili&logoColor=white)](https://www.bilibili.com/video/BV1fwUGBJEGD)
+[![YouTube](https://img.shields.io/badge/Video-YouTube-FF0000?logo=youtube&logoColor=white)](https://www.youtube.com/watch?v=9clzrXTnSZc)
 
 B站视频倍速播放增强脚本，支持自定义倍速、智能记忆、多种调节方式。
 
@@ -18,12 +20,12 @@ B站视频倍速播放增强脚本，支持自定义倍速、智能记忆、多�
 
 ### 方式一：Chrome 应用商店（推荐）
 
-直接从 Chrome 应用商店安装：[![Chrome Web Store](https://img.shields.io/badge/Install-Chrome%20Web%20Store-blue.svg)](https://chromewebstore.google.com/detail/heldpochgjiepmgkcaieifgmdfhoblbk)
+点击直接从 Chrome 应用商店安装：[![Chrome Web Store](https://img.shields.io/badge/Install-Chrome%20Web%20Store-4285F4?logo=googlechrome&logoColor=white)](https://chromewebstore.google.com/detail/heldpochgjiepmgkcaieifgmdfhoblbk)
 
 ### 方式二：Tampermonkey 脚本安装
 
 1. 安装 [Tampermonkey](https://www.tampermonkey.net/) 浏览器扩展
-2. 点击安装脚本：[![Install](https://img.shields.io/badge/Install-UserScript-green.svg)](https://github.com/timerring/BiliSpeedUp/raw/main/dist/BiliSpeedUp.user.js)
+2. 点击安装脚本：[![UserScript](https://img.shields.io/badge/Install-UserScript-green?logo=tampermonkey&logoColor=white)](https://github.com/timerring/BiliSpeedUp/raw/main/dist/BiliSpeedUp.user.js)
 3. 打开 B站视频页面即可使用
 
 ### 方式三：从源码构建
