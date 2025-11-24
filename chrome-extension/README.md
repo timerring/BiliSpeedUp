@@ -8,7 +8,7 @@
 
 B站视频倍速播放增强脚本，支持自定义倍速、智能记忆、多种调节方式。
 
-![](https://cdn.jsdelivr.net/gh/timerring/scratchpad2023/2026/combined_steps.jpg)
+![](https://cdn.jsdelivr.net/gh/timerring/scratchpad2023/2026/2025-11-24-16-18-01.png)
 
 ## 快速安装
 
@@ -44,6 +44,11 @@ npm run build:all
 - `chrome-extension/` - Chrome 扩展目录，可加载到 Chrome
 
 ## 核心特性
+
+### 0. 视频演示（点击观看）
+
+- Bilibili: [![Bilibili](https://img.shields.io/badge/Video-Bilibili-00A1D6?logo=bilibili&logoColor=white)](https://www.bilibili.com/video/BV1fwUGBJEGD)
+- Youtube: [![YouTube](https://img.shields.io/badge/Video-YouTube-FF0000?logo=youtube&logoColor=white)](https://www.youtube.com/watch?v=9clzrXTnSZc)
 
 ### 1. 精确倍速控制
 
